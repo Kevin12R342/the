@@ -1,11 +1,323 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-	</head>
-	<body>
-		<p> Title Metal </p>
-	</body>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pita - The Philosophical Bread</title>
+    <style>
+        /* --- CẤU HÌNH MÀU SẮC NEON --- */
+        :root {
+            --bg-color: #0f111a;
+            --neon-pink: #ff7eb3;
+            --neon-purple: #bd93f9;
+            --neon-blue: #8be9fd;
+            --neon-red: #ff5555;
+            --text-color: #f8f8f2;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(189, 147, 249, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 126, 179, 0.15) 0%, transparent 20%);
+        }
+
+        /* Đồng hồ */
+        #clock {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px rgba(139, 233, 253, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .container {
+            background-color: rgba(26, 31, 54, 0.8);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 650px;
+            width: 85%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 5px 0 15px 0;
+            background: -webkit-linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Dòng dẫn phía trên Kaomoji */
+        .mood-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .kaomoji {
+            font-size: 2.2rem;
+            display: block;
+            margin: 0 0 20px 0;
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px rgba(189, 147, 249, 0.5);
+        }
+
+        /* Phần giới thiệu Bio */
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        /* --- PHẦN TÂM SỰ MỚI (REGRET BOX) --- */
+        .regret-box {
+            background: rgba(255, 85, 85, 0.08);
+            border-left: 4px solid var(--neon-red);
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .regret-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffb8b8;
+            font-style: italic;
+        }
+
+        .regret-highlight {
+            color: var(--neon-red);
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 85, 85, 0.4);
+        }
+
+        /* Phần Donate chữ chạy */
+        .donate-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .donate-text {
+            margin: 0 0 10px 0; 
+            font-size: 0.95rem; 
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .stk-highlight {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-purple), var(--neon-blue));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow_move 4s linear infinite;
+        }
+
+        @keyframes rainbow_move {
+            0% { background-position: 100% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        /* Quote box */
+        .quote-container {
+            margin: 30px 0;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px dashed rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        .quote-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .quote-author {
+            font-size: 0.85rem;
+            color: var(--neon-blue);
+            margin-top: 5px;
+        }
+
+        /* Button */
+        .btn-enter {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 35px;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-enter:hover {
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-blue);
+            background: var(--neon-blue);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="clock">00:00:00</div>
+
+    <div class="container">
+        <h1>Pita the Bread</h1>
+        
+        <div class="mood-text">Đôi mắt nhắm nghiền, mặc kệ sự đời...</div>
+        <span class="kaomoji">( ◡_◡ )</span> 
+        
+        <div class="bio-text">
+            Chào, tôi là Pita. Chỉ là một ổ bánh mì Ai Cập nhỏ bé.<br>
+            Vỏ ngoài thì khô khốc, nhưng ruột bên trong lại đặc quánh những nỗi buồn.
+        </div>
+        
+        <div class="regret-box">
+            <div class="regret-text">
+                "Nếu có cơ hội hãy nắm lấy, đừng để bỏ lỡ rồi hối hận như Pita 
+                <span class="regret-highlight">:(((</span><br>
+                Vì bỏ lỡ sẽ tiếc, tiếc thì sẽ cống hiến cho người khác nhưng vẫn nuối tiếc."
+            </div>
+        </div>
+
+        <div class="donate-box">
+            <p class="donate-text">
+                Pita đang bị cuộc đời vùi dập đến xẹp lép.<br>
+                Muốn Pita phồng phềnh, thơm ngon hơn, hãy ủng hộ chút <strong>bột nở</strong> hoặc <strong>men cái</strong> qua STK:
+            </p>
+            <div class="stk-highlight">HAYTRANTRONGCUOCSONG</div>
+        </div>
+
+        <div class="quote-container">
+            <div id="quote-text" class="quote-text">Loading wisdom...</div>
+            <div id="quote-author" class="quote-author"></div>
+        </div>
+
+        <a href="trang-chinh.html" class="btn-enter">Bước vào thế giới của Pita</a>
+    </div>
+
+    <script>
+        /* Đồng hồ */
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('vi-VN', { hour12: false });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        /* Danh sách 50 câu triết lý văn học vĩ đại */
+        const quotes = [
+            { text: "Kẻ mạnh không phải là kẻ giẫm lên vai người khác để thỏa mãn lòng ích kỷ. Kẻ mạnh chính là kẻ giúp đỡ kẻ khác trên đôi vai mình.", author: "Nam Cao" },
+            { text: "Hạnh phúc không phải là một đích đến, mà là một cách đi.", author: "Khuyết danh" },
+            { text: "Con người sinh ra không phải để tan biến đi như một hạt cát vô danh. Họ sinh ra để in dấu lại trên mặt đất, in dấu lại trong trái tim người khác.", author: "V. Sukhomlinsky" },
+            { text: "Chúng ta sống trong vũng lầy, nhưng một số người trong chúng ta vẫn đang ngước nhìn những vì sao.", author: "Oscar Wilde" },
+            { text: "Địa ngục chính là những người khác.", author: "Jean-Paul Sartre" },
+            { text: "Tôi tư duy, nên tôi tồn tại.", author: "René Descartes" },
+            { text: "Yêu là đau khổ. Không yêu thì ta chết dần mòn.", author: "Trịnh Công Sơn" },
+            { text: "Nếu bạn nhìn lâu vào vực thẳm, vực thẳm cũng sẽ nhìn lại bạn.", author: "Friedrich Nietzsche" },
+            { text: "Tất cả mọi người đều là thiên tài. Nhưng nếu bạn đánh giá một con cá bằng khả năng leo cây, nó sẽ sống suốt đời với niềm tin rằng nó là kẻ đần độn.", author: "Albert Einstein" },
+            { text: "Sống mà không có mục đích giống như đi thuyền mà không có la bàn.", author: "Dostoevsky" },
+            { text: "Điều quan trọng không phải là chúng ta sống được bao lâu, mà là chúng ta sống sâu sắc như thế nào.", author: "Seneca" },
+            { text: "Tự do không phải là làm những gì mình muốn, mà là không phải làm những gì mình không muốn.", author: "Jean-Jacques Rousseau" },
+            { text: "Nỗi đau khổ lớn nhất của con người là sự cô đơn.", author: "Mẹ Teresa" },
+            { text: "Không có gì cao thượng hơn là sự im lặng.", author: "Beethoven" },
+            { text: "Cái đẹp cứu rỗi thế giới.", author: "Dostoevsky" },
+            { text: "Sự thật hiếm khi tinh khiết và không bao giờ đơn giản.", author: "Oscar Wilde" },
+            { text: "Thà bị ghét vì chính con người thật của mình, còn hơn được yêu thương vì một con người giả tạo.", author: "André Gide" },
+            { text: "Cuộc đời là một vở kịch hài đối với những người hay suy nghĩ, và là một bi kịch đối với những người hay cảm nhận.", author: "Horace Walpole" },
+            { text: "Chúng ta chấp nhận tình yêu mà chúng ta nghĩ rằng mình xứng đáng.", author: "Stephen Chbosky" },
+            { text: "Vết thương là nơi ánh sáng đi vào bạn.", author: "Rumi" },
+            { text: "Không ai có thể tắm hai lần trên một dòng sông.", author: "Heraclitus" },
+            { text: "Đừng để những ồn ào của ý kiến người khác nhấn chìm tiếng nói bên trong bạn.", author: "Steve Jobs" },
+            { text: "Người ta chỉ nhìn thấy thật rõ ràng bằng trái tim. Cái cốt yếu thì mắt thường không thấy được.", author: "Saint-Exupéry" },
+            { text: "Hạnh phúc giống như một con bướm, khi bạn càng cố đuổi bắt, nó càng bay xa. Nhưng nếu bạn ngồi yên, nó có thể sẽ đậu nhẹ lên vai bạn.", author: "Nathaniel Hawthorne" },
+            { text: "Cuộc sống không phải là chờ đợi cơn bão qua đi, mà là học cách khiêu vũ dưới mưa.", author: "Vivian Greene" },
+            { text: "Kẻ thù lớn nhất của tri thức không phải là sự ngu dốt, mà là ảo tưởng về sự hiểu biết.", author: "Stephen Hawking" },
+            { text: "Thời gian là thứ quý giá nhất mà một người có thể tiêu xài.", author: "Theophrastus" },
+            { text: "Cái chết không phải là điều tồi tệ nhất; có những thứ còn tồi tệ hơn cả cái chết.", author: "J.K. Rowling" },
+            { text: "Hãy sống như thể bạn sẽ chết ngày mai. Hãy học như thể bạn sẽ sống mãi mãi.", author: "Mahatma Gandhi" },
+            { text: "Mọi thứ rồi sẽ qua đi, chỉ có tình người ở lại.", author: "M. Gorki" },
+            { text: "Đừng đếm những ngày trôi qua, hãy làm cho những ngày ấy trở nên đáng nhớ.", author: "Muhammad Ali" },
+            { text: "Sách là chiếc rìu phá vỡ biển băng trong tâm hồn chúng ta.", author: "Franz Kafka" },
+            { text: "Tình yêu là sự dũng cảm cực độ.", author: "Lão Tử" },
+            { text: "Biết người là trí, biết mình là sáng.", author: "Lão Tử" },
+            { text: "Không có nỗi buồn nào vĩ đại hơn việc nhớ lại thời khắc hạnh phúc khi đang đau khổ.", author: "Dante Alighieri" },
+            { text: "Con người là sản phẩm của những gì mình nghĩ.", author: "Thích Ca Mâu Ni" },
+            { text: "Trong sâu thẳm mùa đông, tôi cuối cùng cũng hiểu rằng trong tôi có một mùa hè bất diệt.", author: "Albert Camus" },
+            { text: "Đừng sợ đi chậm, chỉ sợ đứng yên.", author: "Tục ngữ Trung Hoa" },
+            { text: "Sự trả thù tốt nhất là sống thật hạnh phúc.", author: "Khuyết danh" },
+            { text: "Lòng tốt là thứ ngôn ngữ người điếc có thể nghe và người mù có thể thấy.", author: "Mark Twain" },
+            { text: "Khi bạn muốn từ bỏ, hãy nhớ lại lý do khiến bạn bắt đầu.", author: "Khuyết danh" },
+            { text: "Đừng phán xét tôi qua thành công của tôi, hãy phán xét tôi qua số lần tôi gục ngã và đứng dậy.", author: "Nelson Mandela" },
+            { text: "Cuộc đời ngắn ngủi lắm, hãy phá vỡ các nguyên tắc, tha thứ thật nhanh, hôn thật chậm, yêu thật lòng, cười thật to.", author: "Mark Twain" },
+            { text: "Không phải ai lang thang cũng là người đi lạc.", author: "J.R.R. Tolkien" },
+            { text: "Mỗi người là một mặt trăng, ai cũng có một mặt tối không bao giờ cho ai thấy.", author: "Mark Twain" },
+            { text: "Sự lo lắng không làm cho những rắc rối của ngày mai biến mất, nó chỉ làm mất đi sức mạnh của ngày hôm nay.", author: "Corrie Ten Boom" },
+            { text: "Thế giới này không nguy hiểm vì những kẻ xấu, mà vì những người nhìn thấy cái xấu mà không làm gì cả.", author: "Albert Einstein" },
+            { text: "Chết không phải là dập tắt ngọn nến, mà là tắt đèn vì bình minh đã đến.", author: "Rabindranath Tagore" },
+            { text: "Hãy quay về phía mặt trời và bạn sẽ không thấy bóng tối.", author: "Helen Keller" },
+            { text: "Nếu bạn muốn biết giá trị của tiền bạc, hãy thử đi vay mượn.", author: "Benjamin Franklin" }
+        ];
+
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+            
+            const textEl = document.getElementById('quote-text');
+            const authorEl = document.getElementById('quote-author');
+            
+            textEl.style.opacity = 0;
+            authorEl.style.opacity = 0;
+
+            setTimeout(() => {
+                textEl.innerText = quote.text;
+                authorEl.innerText = "— " + quote.author;
+                textEl.style.opacity = 1;
+                authorEl.style.opacity = 1;
+            }, 300);
+        }
+
+        document.getElementById('quote-text').style.transition = "opacity 0.5s";
+        document.getElementById('quote-author').style.transition = "opacity 0.5s";
+
+        window.onload = showRandomQuote;
+    </script>
+</body>
 </html>
