@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pita - The Philosophical Bread</title>
+    <title>Pita - The Regretful Bread</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300;1,700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
     <style>
         /* --- CẤU HÌNH MÀU SẮC NEON --- */
         :root {
@@ -12,6 +17,7 @@
             --neon-purple: #bd93f9;
             --neon-blue: #8be9fd;
             --neon-red: #ff5555;
+            --neon-gold: #f1fa8c;
             --text-color: #f8f8f2;
         }
 
@@ -43,14 +49,14 @@
         }
 
         .container {
-            background-color: rgba(26, 31, 54, 0.8);
+            background-color: rgba(26, 31, 54, 0.9);
             padding: 40px;
             border-radius: 25px;
             text-align: center;
             max-width: 650px;
             width: 85%;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             position: relative;
         }
@@ -63,7 +69,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Dòng dẫn phía trên Kaomoji */
         .mood-text {
             font-size: 0.9rem;
             color: #aaa;
@@ -80,55 +85,81 @@
             text-shadow: 0 0 10px rgba(189, 147, 249, 0.5);
         }
 
-        /* Phần giới thiệu Bio */
         .bio-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #e0e0e0;
-            margin-bottom: 20px;
-        }
-
-        /* --- PHẦN TÂM SỰ MỚI (REGRET BOX) --- */
-        .regret-box {
-            background: rgba(255, 85, 85, 0.08);
-            border-left: 4px solid var(--neon-red);
-            padding: 15px 20px;
-            margin: 20px 0;
-            text-align: left;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .regret-text {
             font-size: 1rem;
             line-height: 1.6;
-            color: #ffb8b8;
-            font-style: italic;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
 
-        .regret-highlight {
-            color: var(--neon-red);
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(255, 85, 85, 0.4);
+        /* --- KHUNG KÝ ỨC (YOUTH FRAME) MỚI --- */
+        .youth-frame {
+            border: 2px dashed var(--neon-gold); /* Đổi sang màu vàng kim hoài niệm */
+            padding: 30px 20px;
+            margin: 25px 0;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Tem dán trên khung */
+        .youth-frame::before {
+            content: "GỬI THỜI ÁO TRẮNG";
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--neon-gold);
+            color: #000;
+            padding: 2px 15px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--neon-gold);
+        }
+
+        .poem {
+            /* FONT CHỮ MỚI: Merriweather - Dễ đọc, sang trọng như sách */
+            font-family: 'Merriweather', serif; 
+            font-size: 1.15rem; /* Tăng kích thước chữ */
+            font-weight: 300;   /* Nét thanh mảnh */
+            font-style: italic;
+            color: #fff;        /* Màu trắng sáng cho dễ đọc */
+            line-height: 1.8;   /* Giãn dòng rộng ra cho thoáng */
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .pita-regret {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            color: #ffcccc;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+            margin-top: 10px;
+            text-align: justify; /* Căn đều 2 bên */
         }
 
         /* Phần Donate chữ chạy */
         .donate-box {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
             border-radius: 15px;
-            margin: 25px 0;
+            margin: 20px 0;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .donate-text {
             margin: 0 0 10px 0; 
-            font-size: 0.95rem; 
+            font-size: 0.9rem; 
             opacity: 0.9;
-            line-height: 1.5;
         }
 
         .stk-highlight {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -147,25 +178,25 @@
 
         /* Quote box */
         .quote-container {
-            margin: 30px 0;
+            margin: 20px 0;
             min-height: 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-top: 1px dashed rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.05);
             padding-top: 20px;
         }
 
         .quote-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.5;
             font-style: italic;
             color: #aaa;
         }
 
         .quote-author {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--neon-blue);
             margin-top: 5px;
         }
@@ -173,9 +204,9 @@
         /* Button */
         .btn-enter {
             display: inline-block;
-            margin-top: 10px;
-            padding: 12px 35px;
-            border: 2px solid var(--neon-blue);
+            margin-top: 5px;
+            padding: 12px 30px;
+            border: 1px solid var(--neon-blue);
             color: var(--neon-blue);
             text-decoration: none;
             border-radius: 50px;
@@ -184,11 +215,12 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            font-size: 0.9rem;
         }
 
         .btn-enter:hover {
             color: #000;
-            box-shadow: 0 0 20px var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
             background: var(--neon-blue);
         }
 
@@ -205,24 +237,29 @@
         <span class="kaomoji">( ◡_◡ )</span> 
         
         <div class="bio-text">
-            Chào, tôi là Pita. Chỉ là một ổ bánh mì Ai Cập nhỏ bé.<br>
-            Vỏ ngoài thì khô khốc, nhưng ruột bên trong lại đặc quánh những nỗi buồn.
+            Chào, tôi là Pita - Một ổ bánh mì Ai Cập đặc ruột nỗi buồn.
         </div>
         
-        <div class="regret-box">
-            <div class="regret-text">
-                "Nếu có cơ hội hãy nắm lấy, đừng để bỏ lỡ rồi hối hận như Pita 
-                <span class="regret-highlight">:(((</span><br>
-                Vì bỏ lỡ sẽ tiếc, tiếc thì sẽ cống hiến cho người khác nhưng vẫn nuối tiếc."
+        <div class="youth-frame">
+            <div class="poem">
+                "Ta bán thanh xuân để mua vé người lớn,<br>
+                Ngờ đâu tàu chạy, chẳng có trạm khứ hồi.<br>
+                Cấp ba ấy là bầu trời xanh nhất,<br>
+                Lỡ một lần... là lỡ cả đời thôi."
+            </div>
+            
+            <div class="pita-regret">
+                Pita chỉ là một ổ bánh mì nhát gan, sợ đám đông, sợ va chạm nên Pita chọn cách trốn mình trong vỏ bọc khô cứng. <br><br>
+                Để bây giờ, khi nhìn lại, Pita chỉ biết ước gì mình đã sống "nở" hơn, cháy hơn. Nhưng tiếc thay, men đã chết và cơ hội đã qua 
+                <span style="color:var(--neon-red); font-weight:bold;">:((((</span>
             </div>
         </div>
 
         <div class="donate-box">
             <p class="donate-text">
-                Pita đang bị cuộc đời vùi dập đến xẹp lép.<br>
-                Muốn Pita phồng phềnh, thơm ngon hơn, hãy ủng hộ chút <strong>bột nở</strong> hoặc <strong>men cái</strong> qua STK:
+                An ủi tâm hồn xẹp lép này bằng chút <strong>bột nở</strong> hoặc <strong>men cái</strong> qua STK<strong> <p style="color:red">:)))</p> </strong>
             </p>
-            <div class="stk-highlight">Hallo</div>
+            <div class="stk-highlight">DTP</div>
         </div>
 
         <div class="quote-container">
@@ -230,7 +267,7 @@
             <div id="quote-author" class="quote-author"></div>
         </div>
 
-        <a href="Peeita" class="btn-enter">Bước vào thế giới của Pita</a>
+        <a href="Peeita" class="btn-enter">Hãy tích lũy thêm kiến thức thôi nào ➤</a>
     </div>
 
     <script>
@@ -242,11 +279,11 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        /* Danh sách 50 câu triết lý văn học vĩ đại */
+        /* Danh sách 50 câu triết lý */
         const quotes = [
             { text: "Kẻ mạnh không phải là kẻ giẫm lên vai người khác để thỏa mãn lòng ích kỷ. Kẻ mạnh chính là kẻ giúp đỡ kẻ khác trên đôi vai mình.", author: "Nam Cao" },
             { text: "Hạnh phúc không phải là một đích đến, mà là một cách đi.", author: "Khuyết danh" },
-            { text: "Con người sinh ra không phải để tan biến đi như một hạt cát vô danh. Họ sinh ra để in dấu lại trên mặt đất, in dấu lại trong trái tim người khác.", author: "V. Sukhomlinsky" },
+            { text: "Con người sinh ra không phải để tan biến đi như một hạt cát vô danh. Họ sinh ra để in dấu lại trên mặt đất.", author: "V. Sukhomlinsky" },
             { text: "Chúng ta sống trong vũng lầy, nhưng một số người trong chúng ta vẫn đang ngước nhìn những vì sao.", author: "Oscar Wilde" },
             { text: "Địa ngục chính là những người khác.", author: "Jean-Paul Sartre" },
             { text: "Tôi tư duy, nên tôi tồn tại.", author: "René Descartes" },
@@ -321,4 +358,3 @@
     </script>
 </body>
 </html>
-
